@@ -142,8 +142,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'description' => [
+            'required' => 'Description is INVALID',
         ],
     ],
 
@@ -158,6 +158,6 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => ['name'=>'category name'],
 
 ];

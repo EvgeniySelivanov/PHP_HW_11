@@ -5,9 +5,9 @@
 <h1>{{ $title }}</h1>
 <h2>{!!$subtitle !!}</h2>
 
-@foreach ($categories as $category)
-    {{$category->name}}<br>
-    {{$category->description}}<hr>
+@foreach ($importantPost as $imppost)
+    {{$imppost->name}}<br>
+  <hr>
 
 @endforeach
 

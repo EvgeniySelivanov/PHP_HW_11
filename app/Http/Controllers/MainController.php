@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -12,9 +13,9 @@ class MainController extends Controller
         $title = 'Main page';
         $subtitle = '<em>italic</em>';
         $users = ['Petya', 'Vasya'];
-        $categories=Category::all();
-      
-        return view('main', compact('title', 'subtitle', 'users','categories'));
+        
+      $importantPost=Post::where('important','=',1)->get();
+        return view('main', compact('title', 'subtitle', 'users','importantPost'));
     }
 
     public function contacts()

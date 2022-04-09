@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::with('category')->orderByDesc('created_at')->paginate(10);
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -24,7 +26,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $categories=Category::all()->pluck('name','id')->all();
+
+        return view('posts.create',['post'=>new Post(),'categories'=>$categories]);
     }
 
     /**
@@ -35,7 +39,29 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255|min:3',
+            'content' => 'required',
+            'thumbnail'=>'image',
+        ]);
+
+        $post = new Post();
+        $post->fill($request->all());
+        
+      /*   $post->name = $request->name;
+        $post->content = $request->content;
+        $post->category_id =$request->category_id;
+        $post->important=$request->important ? 1:0;
+        */
+        if($request->thumbnail){
+            $fileName=$request->thumbnail->getClientOriginalName();
+            $request->thumbnail->move(public_path('uploads'),$fileName);
+            $post->thumbnail='uploads/' .$fileName;
+        } 
+
+        $post->save();
+
+        return redirect('/posts')->with('success', 'Post ' . $post->name . ' added!');
     }
 
     /**
@@ -56,8 +82,8 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post)
-    {
-        //
+    {$categories=Category::all()->pluck('name','id')->all();
+        return view('posts.edit', ['post'=>$post,'categories'=>$categories]);
     }
 
     /**
@@ -80,7 +106,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect('/posts');
     }
 }
-

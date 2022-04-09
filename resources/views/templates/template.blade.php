@@ -36,7 +36,25 @@
                  
                 </ul>
               </li>
-           
+
+              
+              <li class="nav-item dropdown">
+
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  
+                  Posts
+  
+                </a>
+  
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+  
+                  <li><a class="dropdown-item" href="{{url('posts')}}">All posts</a></li>
+  
+                  <li><a class="dropdown-item" href="{{route('posts.create')}}">Add post</a></li>
+  
+                </ul>
+  
+              </li>
             </ul>
          
           </div>

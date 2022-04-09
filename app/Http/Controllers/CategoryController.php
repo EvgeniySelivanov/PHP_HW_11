@@ -16,7 +16,7 @@ class CategoryController extends Controller
 
        /* $categories=Category::all(); */
 
-       $categories=Category::orderByDesc('created_at')->paginate(3);
+       $categories=Category::withCount('posts')->orderByDesc('created_at')->paginate(3);
        return view('categories.index', compact('categories'));
     }
 

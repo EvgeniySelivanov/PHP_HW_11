@@ -17,7 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('username',50);
             $table->text('text');
-            $table->timestamps();
+            $table->text('time_date');
+            $table->timestamps('');
+           
+
         });
     }
 

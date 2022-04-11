@@ -1,4 +1,6 @@
-@extends('templates.template')
+{{-- @extends('layouts.app') --}}
+ @extends('templates.template') 
+
 
 
 @section('content')
@@ -6,7 +8,7 @@
 <h2>{!!$subtitle !!}</h2>
 
 @foreach ($importantPost as $imppost)
-    {{$imppost->name}}<br>
+    <h3>{{$imppost->name}}</h3><br>
   <hr>
 
 @endforeach

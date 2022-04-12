@@ -10,12 +10,16 @@ class MainController extends Controller
 {
     public function index()
     {
-        $title = 'Main page';
-        $subtitle = '<em>italic</em>';
-        $users = ['Petya', 'Vasya'];
-        
-      $importantPost=Post::where('important','=',1)->get();
-        return view('main', compact('title', 'subtitle', 'users','importantPost'));
+    $importantPost=Post::where('important','=',1)->get();
+    return view('main', compact('importantPost'));
+    }
+
+
+
+    public function categoryPost($id)
+    {
+        $importantPost=Post::where('category_id','=',$id)->get();
+        return view('main', compact('importantPost'));
     }
 
     public function contacts()

@@ -24,6 +24,8 @@
         @endforeach
     </tbody>
 </table>
+
+
 @else<h2 style="color:blue;font-weight:bold;font-style:italic;">Напишите первый отзыв!!</h2>
 @endif
 <hr>

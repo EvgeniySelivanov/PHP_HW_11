@@ -1,12 +1,14 @@
 <?php
+
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\PostController;
 
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\ReviewsAdminController;
-use App\Http\Controllers\ReviewsadminController as ControllersReviewsadminController;
-use App\Models\Reviewsadmin;
+use GuzzleHttp\Middleware;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -26,20 +28,36 @@ Route::get('/createreviews',[ReviewsController::class,'createReviews']);
 Route::get('/createreviewsadmin',[ReviewsadminController::class,'createReviews']);
 
 Route::get('/deletereviews',[ReviewsadminController::class,'deleteReviews']);
-Route::resource('categories', CategoryController::class);
-Route::resource('posts', PostController::class);
+
+/* Route::resource('categories', CategoryController::class);
+Route::resource('posts', PostController::class); */
 
 Route::get('editreviews', [ReviewsadminController::class,'editReviews']);
-/* Route::get('update', [ReviewsadminController::class,'update']); */
 
-Route::resource('reviewsadmin',ReviewsAdminController::class);
-
-
-
-
-
-
+/* Route::resource('reviewsadmin',ReviewsAdminController::class); */
 
 Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/*группа ссылок для админа */
+Route::prefix('admin')->middleware(['auth','admin'])->group(
+    function()
+    {
+        Route::get('/',[AdminController::class,'index']);
+        Route::resource('categories', CategoryController::class);
+        Route::resource('posts', PostController::class);
+       
+    }
+
+
+
+);
+
+
+
+
+
+
+//Route::get('admin',[AdminController::class,'index'])->middleware('auth','admin');
+
+

@@ -1,4 +1,4 @@
-@extends('templates.template')
+@extends('admin.templates.template')
 @section('content')
     <h1>Edit Categories {{$category->name}}</h1>
     @if ($errors->any())

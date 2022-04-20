@@ -4,19 +4,25 @@
 
 
 @section('content')
+@auth
+<h1>Авторизированый</h1>
+@endauth
 
-{{-- @foreach ($importantPost as $imppost)
-    <h3>{{$imppost->name}}</h3><br>
-    <h6>{{$imppost->content}}</h6>
-  <hr>
+@guest
+<h1>Неавторизированый</h1>   
+@endguest
 
-@endforeach --}}
+{{-- {{dump(Auth::user()->roles->contains('name','admin'))}}
+{{dump(Auth::user()->isAdmin())}} --}}
+
+
 <table class="table mt-3">
 <tbody>
   @foreach ($importantPost as $imppost)
   <tr>
-    {{-- <td>{{$loop->iteration + ($imppost->currentPage()-1)*$imppost->perPage() }}</td> --}}
-    <td>{{$imppost->created_at}}</td>
+    {{-- date_format($date, 'Y-m-d H:i:s'); --}}
+
+    <td>{{date_format($imppost->created_at,'d.m.Y')}}</td>
     <td><img src="{{asset($imppost->thumbnail)}}" alt="{{$imppost->name}}" style="width: 180px"></td>
     <td ><h3 style="font-weight: bold;">{{$imppost->name}}</h3></td>
     <td><h5>{{$imppost->content}}</h5></td>

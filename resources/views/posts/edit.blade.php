@@ -1,4 +1,4 @@
-@extends('templates.template')
+@extends('admin.templates.template')
 
 @section('content')
   <h1>Edit Post {{$post->name}}</h1>

@@ -1,4 +1,4 @@
-@extends('templates.template')
+@extends('admin.templates.template')
 @section('content')
     <h1>Categories</h1>
 @if(session('success'))

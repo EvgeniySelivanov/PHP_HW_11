@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -17,7 +19,7 @@ class CategoryController extends Controller
        /* $categories=Category::all(); */
 
        $categories=Category::withCount('posts')->orderByDesc('created_at')->paginate(3);
-       return view('categories.index', compact('categories'));
+       return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -27,7 +29,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        return view('admin.categories.create');
     }
 
     /**
@@ -50,7 +52,7 @@ class CategoryController extends Controller
       $category->name=$request->name;
       $category->description=$request->description;
       $category->save();
-        return redirect('/categories')->with('success', 'Category' . $category->name . ' added!');
+        return redirect('/admin/categories')->with('success', 'Category' . $category->name . ' added!');
     }
 
     /**
@@ -73,7 +75,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category=Category::findOrFail($id);//ищи или выведи ошибку
-        return view('categories.edit',compact('category'));
+        return view('admin.categories.edit',compact('category'));
     }
 
     /**
@@ -94,7 +96,7 @@ class CategoryController extends Controller
       $category->name=$request->name;
       $category->description=$request->description;
       $category->save();
-        return redirect('/categories');  
+        return redirect('/admin/categories');  
     }
 
     /**
@@ -106,6 +108,6 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         Category::findOrFail($id)->delete(); 
-        return redirect('/categories'); 
+        return redirect('/admin/categories'); 
     }
 }

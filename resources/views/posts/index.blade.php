@@ -1,4 +1,4 @@
-@extends('templates.template')
+@extends('admin.templates.template')
 
 @section('content')
   <h1>Posts</h1>
@@ -21,13 +21,13 @@
     </thead>
     <tbody>
       @foreach ($posts as $item)
-      <tr>
+      <tr data-id="{{$item->id}}">
         <td>{{$loop->iteration + ($posts->currentPage()-1)*$posts->perPage() }}</td>
         <td><img src="{{asset($item->thumbnail)}}" alt="{{$item->name}}" style="width: 80px"></td>
         <td>{{$item->name}}</td>
         <td>{{$item->content}}</td>
         <td>{{$item->category->name}}</td>
-        <td>{{$item->important}}</td>
+        <td><a href="#" class="important-post">{{$item->important==1?'ДА':'НЕТ'}}</a></td>
         <td>
           <a href="{{route('posts.edit', ['post'=>$item->id])}}" class="btn btn-warning mt-2">Edit</a>
 

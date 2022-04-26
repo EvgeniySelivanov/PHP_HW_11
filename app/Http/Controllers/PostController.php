@@ -109,4 +109,10 @@ class PostController extends Controller
         $post->delete();
         return redirect('/posts');
     }
+    public function changeImportant(Post $post){
+       $post->important=$post->important==0?1:0;
+       $post->save();
+       return $post->important;
+       
+    }
 }

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Mail\ContactMail;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
@@ -9,6 +9,7 @@ use App\Models\Role;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class MainController extends Controller
 {
@@ -39,13 +40,16 @@ class MainController extends Controller
 
     public function getForm(Request $request)
     {
-       $email=$request->email;
-       $pass=$request->pass;
-       $check=$request->check;
-
-
-        return redirect('/');
-
+      //dump($request->all());
+      $request->validate([
+          'email'=>'required|email',
+          'message'=>'required|min:3',
+      ]);
+      $admins=Role::where('name','=','admin')->first()->users;
+    
+      Mail::to($admins)->send(new ContactMail($request->email,$request->message));
 
     }
 }
+
+

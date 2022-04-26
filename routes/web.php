@@ -46,10 +46,10 @@ Route::prefix('admin')->middleware(['auth','admin'])->group(
         Route::get('/',[AdminController::class,'index']);
         Route::resource('categories', CategoryController::class);
         Route::resource('posts', PostController::class);
-       
+        Route::get('/posts/change-important/{post}',[PostController::class,'changeImportant']);
     }
 
-
+    
 
 );
 

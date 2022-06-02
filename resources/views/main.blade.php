@@ -24,7 +24,10 @@
 
     <td>{{date_format($imppost->created_at,'d.m.Y')}}</td>
     <td><img src="{{asset($imppost->thumbnail)}}" alt="{{$imppost->name}}" style="width: 180px"></td>
-    <td ><h3 style="font-weight: bold;">{{$imppost->name}}</h3></td>
+    <td ><h3 style="font-weight: bold;">
+      <a href="/product/{{$imppost->slug}}">{{$imppost->name}}</a>
+    </h3></td>
+
     <td><h5>{{$imppost->content}}</h5></td>
     <td><a href="category/{{$imppost->category->id}}">
       <h5 style="font-weight: bold;">{{$imppost->category->name}}</h5>

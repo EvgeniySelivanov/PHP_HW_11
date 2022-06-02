@@ -50,6 +50,13 @@ class MainController extends Controller
       Mail::to($admins)->send(new ContactMail($request->email,$request->message));
 
     }
+    
+    public function product(Post $post)
+    {
+        return view('product',compact('post'));
+     
+
+    }
 }
 
 

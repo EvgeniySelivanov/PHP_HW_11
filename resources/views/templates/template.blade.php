@@ -48,41 +48,13 @@
 
             </ul>
 
-            {{--   <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Categories
-                </a>
-               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="{{url('categories')}}">All categories</a></li>
-                  <li><a class="dropdown-item" href="{{route('categories.create')}}">Add category</a></li>
-                 
-                </ul>
-              </li> --}}
-
-              
-         {{--      <li class="nav-item dropdown">
-
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-  
-                  Posts
-  
-                </a>
-  
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-  
-                  <li><a class="dropdown-item" href="{{url('posts')}}">All posts</a></li>
-  
-                  <li><a class="dropdown-item" href="{{route('posts.create')}}">Add post</a></li>
-  
-                </ul>
-  
-              </li> --}}
+    
 
             </ul>
 
 
 
-
+            <button class="btn btn-primary ms-auto" data-bs-toggle="modal" data-bs-target="#cart">Cart</button>
             <ul class="navbar-nav ms-auto">
               <!-- Authentication Links -->
               @guest
@@ -142,6 +114,24 @@
 
     </div>
 
+    {{-- Modal window --}}
+    <div class="modal fade" id="cart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Your cart</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+           @include('cart')
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
    
  </body>
 </html>

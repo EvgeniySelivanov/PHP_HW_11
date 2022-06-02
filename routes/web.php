@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\PostController;
-
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ReviewsController;
@@ -33,6 +33,9 @@ Route::get('/deletereviews',[ReviewsadminController::class,'deleteReviews']);
 Route::resource('posts', PostController::class); */
 
 Route::get('editreviews', [ReviewsadminController::class,'editReviews']);
+Route::get('product/{post:slug}', [MainController::class,'product']);
+Route::post('cart/add',[CartController::class,'addProduct']);
+
 
 /* Route::resource('reviewsadmin',ReviewsAdminController::class); */
 

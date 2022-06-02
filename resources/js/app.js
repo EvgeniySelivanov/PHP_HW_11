@@ -38,3 +38,14 @@ contactForm?.addEventListener('submit',(e)=>{
     }
     });
 });
+
+const addToCartForm=document.querySelector('.add-to-cart');
+addToCartForm?.addEventListener('submit',(e)=>{
+    e.preventDefault();
+   
+    let formData=new FormData(addToCartForm);
+    axios.post('/cart/add',formData)
+    .then(response=>{
+        console.log(response);
+    });
+});

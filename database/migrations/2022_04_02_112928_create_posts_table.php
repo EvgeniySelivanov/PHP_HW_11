@@ -19,7 +19,9 @@ return new class extends Migration
             $table->text('content');
             $table->string('thumbnail')->nullable();
             $table->boolean('important')->default(0);
-
+            $table->float('price');
+            $table->string('slug');
+            
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
 
